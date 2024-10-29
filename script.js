@@ -31,7 +31,7 @@ var virtualKeyboardChromeExtensionHiraganaFormat = false;
 var virtualKeyboardChromeExtensionKatakanaFormat = false;
 var inputValue = '';
 var cleanCharacter = 0;
-var kanaKanjiResultsContainer = ""; 
+var kanaKanjiResultsContainer = "";
 var resultsList;
 var openMenu = false;
 
@@ -276,7 +276,7 @@ function virtualKeyboardChromeExtension_click(key, skip) {
                 if (virtualKeyboardChromeExtensionKatakanaFormat) {
                     document.getElementById('virtualKeyboardChromeExtensionMainKatakana').style.display = virtualKeyboardChromeExtensionJapaneseKeys ? "none" : "";
                     document.getElementById('virtualKeyboardChromeExtensionKatakanaKeys').style.display = virtualKeyboardChromeExtensionJapaneseKeys ? "" : "none";
-    
+
                 } else {
                     document.getElementById('virtualKeyboardChromeExtensionMainKbd').style.display = virtualKeyboardChromeExtensionJapaneseKeys ? "none" : "";
                     document.getElementById('virtualKeyboardChromeExtensionHiraganaKeys').style.display = virtualKeyboardChromeExtensionJapaneseKeys ? "" : "none";
@@ -458,7 +458,7 @@ function virtualKeyboardChromeExtension_click(key, skip) {
 
 async function virtualKeyboard_kana_kanji_conversion(key) {
     cleanCharacter = inputValue.length - 1;
-    
+
     const ignoredKeys = {
         'empty': true,
         'ScrollRight': true,
@@ -492,7 +492,7 @@ async function virtualKeyboard_kana_kanji_conversion(key) {
         return;
     } else {
         try {
-            let response = await fetch(`http://www.google.com/transliterate?langpair=ja-Hira|ja&text=${inputValue}`);
+            let response = await fetch(`http://www.google.com/transliterate?langpair=ja-Hira|ja&text=${inputValue}&num=20`);
             if (!response.ok) {
                 throw new Error('No response from the server: ' + response.status);
             }
@@ -1289,7 +1289,7 @@ function init_virtualKeyboardChromeExtension(firstTime) {
                                     mi[i][endEvent] = function (ent) {
                                         virtualKeyboardChromeExtensionClickedMenuBtn = true;
                                         ent.preventDefault();
-                                        virtualKeyboardChromeExtensionClickedMenuBtn = false;                                        
+                                        virtualKeyboardChromeExtensionClickedMenuBtn = false;
                                         this.setAttribute("mo", "false");
                                         switch (this.getAttribute("_action")) {
                                         case "setKeyboard":
